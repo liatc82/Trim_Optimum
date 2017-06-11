@@ -1,0 +1,152 @@
+\documentclass[review]{elsarticle}
+
+\usepackage{lineno,hyperref}
+\modulolinenumbers[5]
+
+\journal{Journal of \LaTeX\ Templates}
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{float}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{todonotes}
+\usepackage{amsthm} 
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e} 
+\usepackage{makecell}
+
+\onehalfspacing
+\usepackage{pdfpages}
+\usepackage{times}
+\usepackage{multirow}
+\usepackage[toc,page]{appendix}
+\usepackage{listings}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{claim}{Claim}
+\newtheorem{example}{Example}
+\newtheorem{proposition}{Proposition}
+
+
+\DeclareMathOperator{\supp}{support}
+\DeclareMathOperator{\support}{support}
+\DeclareMathOperator{\Trim}{Trim}
+\DeclareMathOperator{\LTrim}{LTrim}
+
+\begin{document}
+
+\begin{definition}\label{consecutive} For any $A \subseteq \mathbb{R}$ we say that
+$B \subseteq A$ is \emph{consecutive} if any $a\in A$ that is smaller than $\max B$ and larger than $\min B$ is in $B$.
+\end{definition}
+
+\begin{definition}\label{part_consecutive} A partition $P=\{B_1,\dots,B_n\}$ of a set $A \subseteq \mathbb{R}$ is called 
+\emph{consecutive} if all the subsets $B_1 ,\dots,B_n$ are consecutive.
+\end{definition}
+
+
+\begin{definition}\label{partition}
+	For a discrete real random variable $X$ and a partition $S$ of its support, we define a new discrete random variable $X_S$ by:
+	
+	$$P(X_S = t) = \begin{cases} 
+	P(X\in B) & \text{If $t$ is the minimum of some } B \in S, \\
+	0      & \text{otherwise.}
+	\end{cases}$$
+\end{definition}
+
+
+\begin{definition}
+	For discrete real-valued variables $X_1$ and $X_2$, we say that $X_1$ is an $\varepsilon$ one-sided Kolmogorov approximation of $X_2$, denoted by 
+	$X_1 \preceq_\varepsilon X_2$, if $$0 \leq  \max\limits_{t} (F_{X_1}(t)-F_{X_2}(t)) \leq \varepsilon.$$
+\end{definition}
+
+\begin{proposition}
+	For any discrete real-valued random variable $X$ and any $m \in \mathbb{N}$, there is a consecutive partition $P$ of $\supp(X)$ such that $|P|\leq m$ and
+	$X \preceq_\varepsilon X_P$ 
+	%and there is no $\varepsilon' < \varepsilon$ and $X'$ with $\supp(X')\leq m$ such that $X \preceq_{\varepsilon'} X'$.
+	where $$ \varepsilon = \min\{ \varepsilon \colon \text{ $\exists X'$ with $\supp(X')\leq m$ such that $X \preceq_\varepsilon X'$}\}.$$
+\end{proposition}
+
+
+%\begin{proposition}
+%	For any discrete real-valued random variable $X$ and any $m \in \mathbb{N}$,
+%	if $$X' =\arg \min_{\stackrel{X'}{\supp(X')\leq m}} \max\limits_{t}|F_X(t)-F_{X'}(t)|$$ 
+%	then there is a consecutive partition $P$ of $\supp(X)$ such that $X'= X_P$.
+%\end{proposition}
+
+
+
+%\begin{definition}
+%Partition of random variable $X$ means a partition over the set $\support(X)$ where each subset represents by one of its members and forms a new random variable, $X'$. In our case, each subset represents by its minimal value.
+%\end{definition}
+
+%\begin{definition}\label{partition}
+%The random variable $X'$ is a partition of the random variable $X$ if there is a partition $S$ of the set $\support(X)$ and a function $f:(B\in S) \rightarrow \mathbb{N}$ such that $\forall B\in S\rightarrow f(B)\in \support(X')$ and  $P_{X'}(f(B))=\sum_{b\in B} P_X(b)$
+%\end{definition}
+
+%\begin{definition}\label{partition_min}
+%If $f:=min$. The random variable $X'$ is a partition of the random variable $X$ if there is a partition $S$ over the set $\support(X)$ such that $\forall B\in S\rightarrow min(B)\in \support(X')$ and $P_{X'}(min(B))=\sum_{b\in B} P_X(b)$
+%\end{definition}
+
+%\begin{lemma}\label{consecutive}
+%Given $X$ a random variable with a support of size $n$ and $X'$ a random variable with a support of size $m$ which is the optimal partition of $X$ such that $\max\limits_{t}|F_X(t)-F_{X'}(t)|$ is minimal. Then, the partition $X'$ is consecutive.
+%\end{lemma}
+
+\begin{proof}
+$X_S$ is a random variable defined by the partition $S$, we will show that $\forall B\in S$, $B$ is consecutive.
+Proof by contradiction, assuming that $S$ is sorted by the subsets minimum values and $\exists B \in S $ which is not consecutive. Let us look at the first subset, following $B$ in ascending order, $C$, clearly $min(B)<min(C)$ and $min(B),min(C) \in \support(X_S)$. Notice that all the values smaller then $min(C)$ are in the subsets preceding $C$. Assuming that there is a value $y\in support(X)$ smaller than $min(C)$ and $y$ is not a member in one of the subsets preceding $C$, therefore $y$ must be a member in one of the subsets following $C$ including $C$ itself. However, if that was the case, $y$ would be the minimum value of its subset and by that $min(C)$ would not be the minimum value of the subset following $B$ in contradiction to our construction. By that we know that every value smaller than $min(C)$ is in one of the subsets preceding it. But, there may be values that are grater than $min(C)$ in one of the subsets preceding $C$ which obviously increasing $\max\limits_{t}|F_{X}(t)-F_{X_S}(t)|$, we can remove them from their subsets and add them to $C$ and by that decrease $\max\limits_{t}|F_{X}(t)-F_{X_S}(t)|$, in contradiction to the optimality of $X_P$. Adding those values to $C$ will only decrease $F_{X_S}(t), \forall t\in \support(X)<min(C)$ and remain the same for $F_{X_S}(t), \forall t \in \support\geq min(C)$.
+\end{proof}
+
+%\begin{proof}
+%$X'$ is a partition of $X$ by definition  ~\ref{partition_min} means that there is a partition $S$ over the set $\support(X)$ such that $\forall B\subseteq S, min(B)\in \support(X')$ and that $P_{X'}(min(B))=\sum_{b\in B} P_X(b)$. We will show that $\forall B\subseteq S$, $B$ is consecutive.
+%Proof by contradiction, assuming that $S$ is sorted by the subsets minimum values and $\exists B \subseteq S $ which is not consecutive. Let us look at the first subset, following $B$ in ascending order, $C$, clearly $min(B)<min(C)$ and $min(B),min(C) \in \support(X')$. Notice that all the values smaller then $min(C)$ are in the subsets preceding $C$. Assuming that there is a value $y\in support(X)$ smaller than $min(C)$ and $y$ is not a member in one of the subsets preceding $C$, therefore $y$ must be a member in one of the subsets following $C$ including $C$ itself. However, if that was the case, $y$ would be the minimum value of its subset and by that $min(C)$ would not be the minimum value of the subset following $B$ in contradiction to our construction. By that we know that every value smaller than $min(C)$ is in one of the subsets preceding it. But, there may be values that are grater than $min(C)$ in one of the subsets preceding $C$ which obviously increasing $\max\limits_{t}|F_{X'}(t)-F_{X}(t)|$, we can remove them from their subsets and add them to $C$ and by that decrease $\max\limits_{t}|F_{X'}(t)-F_X(t)|$, in contradiction to the optimality of $X'$. Adding those values to $C$ will only decrease $F_{X'}(t), \forall t\in \support(X)<min(C)$ and remain the same for $F_{X'}(t), \forall t \in \support\geq min(C)$.
+%\end{proof}
+
+\begin{theorem}
+Given $X_1 \dots X_k$ discrete random variables in a table representation and $m \in \mathbb{N}$, if $X'=OptimalTrim(X_1 \dots X_k,m)$, a discrete random variable and a partition of $X$ with a support of size $\leq m$ then $\max\limits_{t}|F_{\sum_1^k X_i}(t)-F_{X'}(t)|$ is minimal.
+\end{theorem}
+
+\begin{proof}
+From Lemma~\ref{consecutive} we get that the optimal partition for the objective function $|F_{\sum_1^k X_i}(t)-F_{X'}(t)|$ is consecutive.
+Using this fact allow us to reduce our problem to the same problem solved by Rothblum in the paper from 1982. Let $X = \sum_{i=1}^k X_i$, from Rothblum we first construct the weighted graph $G = (V,E)$, where $V = \support(X), E = \{\forall i,j \in V, (i,j)\in E\}$ and the weights $\forall e=(i,j)\in E, w(e) = |F_{X}(i)-F_{X}(j)|$. In a classical Rothblum the shortest path is found by Bellman Ford algorithm, in our case we use a variation of Bellman-Ford, minimax bottleneck path by using the function $bottleneck(x) =    min   [max(bottleneck(v),w(e))]$. Bellman-Ford algorithm can be forced to return path of some length, in our case $m$, meaning, find the lightest maximal edge in a length $m$ path. 
+$X'$ is the result of $OptimalTrim(X_1 \dots X_n,m)$, which is the same as described above. 
+\end{proof}
+
+\begin{algorithm}
+  \DontPrintSemicolon
+  \SetKwFunction{Sequence}{Sequence} 
+  \SetKwFunction{Convolv}{Conv}
+  \SetKwFunction{Trim}{Trim}
+
+   $D=((0,1))$ //  Dummy random var.: $0$ with prob. $1$ \;
+  \For{$i=1$ \emph{\KwTo} $k$} {
+	$D$=Convolve($D, X_i$)\; 
+	}
+   $G=(E,V)$ \;
+   $V = \support(D)$\;
+   $E = \{\forall i,j \in V, (i,j)\in E\}$\;
+   \ForEach{$e=(i,j) \in  E $ }{
+   $w(e) = F_D(i)+\sum_{t=i}^j P_D(t)-F_D(i)$
+   }
+   $L, \varepsilon$=BellmanFord($G$, $min(V)$, $m$, $bottleneck(x) =    min   [max(bottleneck(v),w(e))]$) /* Run Bellman-Ford algorithm as minimax bottleneck path version, $m$ times, starting with a single source, where $L$ is the path */ \;
+   %http://www.cs.cmu.edu/afs/cs/academic/class/15451-f04/www/lectures/lect1012.txt
+   $D'=()$\;
+   \ForEach{$e=(i,j) \in  L $ }{
+   $D' = append(D', (i,\sum_{t=i}^j P_D(t))$
+   }
+   \Return $D, bottleneck(x)$\;
+  %-------------------------------%
+  \SetKwProg{myproc}{Procedure}{}{}
+  \myproc{
+  BellmanFord($G$,$source$,$m$,$f$)
+  }{ }
+     
+\caption{OptimalTrim ($X_1,\dots,X_k$ , $m$)}  
+\label{alg:sequence}
+\end{algorithm}
+
+
+Two not proved yet issues:
+1) why the first gives us the minimal partition? 2) bottleneck  = the maximal error, $\varepsilon$.
+\end{document}
+
