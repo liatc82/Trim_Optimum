@@ -22,11 +22,11 @@
 \usepackage[toc,page]{appendix}
 \usepackage{listings}
 \newtheorem{lemma}{Lemma}
-\newtheorem{definition}{Definition}
-\newtheorem{theorem}{Theorem}
-\newtheorem{claim}{Claim}
-\newtheorem{example}{Example}
-\newtheorem{proposition}{Proposition}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{claim}[lemma]{Claim}
+\newtheorem{example}[lemma]{Example}
+\newtheorem{proposition}[lemma]{Proposition}
 
 
 \DeclareMathOperator{\supp}{support}
@@ -60,9 +60,9 @@ $B \subseteq S$ is \emph{consecutive} if any $s\in S$ that is smaller than $\max
 	$X_1 \preceq_{\varepsilon,n} X_2$, if, for all $t$, $0 \leq   F_{X_2}(t)-F_{X_1}(t) \leq \varepsilon$ and the size of the support of $X_2$ is smaller or equal to $m$. We say that the approximation is tight if there exists no  $X_2' \neq X_2$ such that $X_1 \preceq_{\varepsilon,m} X_2'$ and, for all $t$, $F_{X_2'}(t) \leq F_{X_2}(t)$. 
 \end{definition}
 
-\begin{proposition}
+\begin{definition}
 	For a discrete real-valued random variable $X$ and $m \in \mathbb{N}$ let $\varepsilon(X,m) = \min\{\varepsilon \colon \text{ there is $X'$ such that $X \preceq_{\varepsilon,m} X'$}\}$. 
-\end{proposition}
+\end{definition}
 
 \begin{proposition}
 	For any discrete real-valued random variable $X$ and any $m \in \mathbb{N}$, there is a consecutive partition $P$ of $\supp(X)$ such that $X \preceq_{\varepsilon(X,m),m} X_P$ 
