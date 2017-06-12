@@ -36,20 +36,20 @@
 
 \begin{document}
 
-\begin{definition}\label{consecutive} For any $A \subseteq \mathbb{R}$ we say that
-$B \subseteq A$ is \emph{consecutive} if any $a\in A$ that is smaller than $\max B$ and larger than $\min B$ is in $B$.
+\begin{definition}\label{consecutive} For a set $S \subseteq \mathbb{R}$ we say that
+$B \subseteq S$ is \emph{consecutive} if any $s\in S$ that is smaller than $\max B$ and larger than $\min B$ is in $B$.
 \end{definition}
 
-\begin{definition}\label{part_consecutive} A partition $P=\{B_1,\dots,B_n\}$ of a set $A \subseteq \mathbb{R}$ is called 
+\begin{definition}\label{part_consecutive} A partition $P=\{B_1,\dots,B_n\}$ of a set $S \subseteq \mathbb{R}$ is called 
 \emph{consecutive} if all the subsets $B_1 ,\dots,B_n$ are consecutive.
 \end{definition}
 
 
 \begin{definition}\label{partition}
-	For a discrete real random variable $X$ and a partition $S$ of its support, we define a new discrete random variable $X_S$ by:
+	For a discrete real random variable $X$ and a partition $P$ of its support, we define a new discrete random variable $X_P$ by:
 	
-	$$P(X_S = t) = \begin{cases} 
-	P(X\in B) & \text{If $t$ is the minimum of some } B \in S, \\
+	$$Pr(X_P = t) = \begin{cases} 
+	Pr(X\in B) & \text{If $t$ is the minimum of some } B \in P, \\
 	0      & \text{otherwise.}
 	\end{cases}$$
 \end{definition}
