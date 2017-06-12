@@ -56,15 +56,17 @@ $B \subseteq S$ is \emph{consecutive} if any $s\in S$ that is smaller than $\max
 
 
 \begin{definition}
-	For discrete real-valued variables $X_1$ and $X_2$, we say that $X_1$ is an $\varepsilon$ one-sided Kolmogorov approximation of $X_2$, denoted by 
-	$X_1 \preceq_\varepsilon X_2$, if $$0 \leq  \max\limits_{t} (F_{X_1}(t)-F_{X_2}(t)) \leq \varepsilon.$$
+	For discrete real-valued variables $X_1$ and $X_2$, we say that $X_2$ is a one-sided Kolmogorov approximation, with the parameters $\varepsilon$ and $m$, of $X_1$, denoted by 
+	$X_1 \preceq_{\varepsilon,n} X_2$, if, for all $t$, $0 \leq   F_{X_2}(t)-F_{X_1}(t) \leq \varepsilon$ and the size of the support of $X_2$ is smaller or equal to $m$. We say that the approximation is tight if there exists no  $X_2' \neq X_2$ such that $X_1 \preceq_{\varepsilon,m} X_2'$ and, for all $t$, $F_{X_2'}(t) \leq F_{X_2}(t)$. 
 \end{definition}
 
 \begin{proposition}
-	For any discrete real-valued random variable $X$ and any $m \in \mathbb{N}$, there is a consecutive partition $P$ of $\supp(X)$ such that $|P|\leq m$ and
-	$X \preceq_\varepsilon X_P$ 
-	%and there is no $\varepsilon' < \varepsilon$ and $X'$ with $\supp(X')\leq m$ such that $X \preceq_{\varepsilon'} X'$.
-	where $$ \varepsilon = \min\{ \varepsilon \colon \text{ $\exists X'$ with $\supp(X')\leq m$ such that $X \preceq_\varepsilon X'$}\}.$$
+	For a discrete real-valued random variable $X$ and $m \in \mathbb{N}$ let $\varepsilon(X,m) = \min\{\varepsilon \colon \text{ there is $X'$ such that $X \preceq_{\varepsilon,m} X'$}\}$. 
+\end{proposition}
+
+\begin{proposition}
+	For any discrete real-valued random variable $X$ and any $m \in \mathbb{N}$, there is a consecutive partition $P$ of $\supp(X)$ such that $X \preceq_{\varepsilon(X,m),m} X_P$ 
+	is a tight approximation.
 \end{proposition}
 
 
