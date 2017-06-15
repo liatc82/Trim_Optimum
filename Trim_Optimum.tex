@@ -87,6 +87,14 @@ P(s_{i-1} < X \leq s_i) & \text{if } t=s_i \text{ for some } i \neq 0 \\
 \end{cases}
 $$
 We will show now that: (1) there is a partition $P$ such that $X'''=X_P$; (2) $X \preceq_{\varepsilon,m} X'''$. \todo{Add proofs of these claims}
+
+To Liat: Maybe we better define $X'''$ directly from $X'$ (without defining $X''$) by 
+	$$F_{X'''}(t)=\begin{cases}
+	  0    & \text{if } t < t_0 \\
+	  F_{X'}(t_i) & \text{if } t = t_i     \\
+	  F_{X'}(t_{i-1})    & \text{if } t_{i-1} < t < t_i \\
+	  1               & t \geq t_n
+	\end{cases}$$
 \end{proof}
 
 
