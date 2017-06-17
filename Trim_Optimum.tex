@@ -30,15 +30,15 @@
 \newtheorem{proposition}[lemma]{Proposition}
 
 
-\DeclareMathOperator{\supp}{supp}
-\DeclareMathOperator{\support}{supp}
+\DeclareMathOperator{\supp}{support}
+\DeclareMathOperator{\support}{support}
 \DeclareMathOperator{\Trim}{Trim}
 \DeclareMathOperator{\LTrim}{LTrim}
 
 \begin{document}
 
 \begin{definition}\label{consecutive} For a set $S \subseteq \mathbb{R}$ we say that
-$B \subseteq S$ is \emph{consecutive} if any $s\in S$ that is smaller than $\max B$ and larger than $\min B$ is in $B$.
+$B \subseteq S$ is \emph{consecutive} if any $s\in S$ that is smaller than $\max(B)$ and larger than $\min(B)$ is in $B$.
 \end{definition}
 
 \begin{definition}\label{part_consecutive} A partition $P=\{B_1,\dots,B_n\}$ of a set $S \subseteq \mathbb{R}$ is called 
@@ -50,29 +50,29 @@ $B \subseteq S$ is \emph{consecutive} if any $s\in S$ that is smaller than $\max
 	For a discrete real random variable $X$ and a partition $P$ of its support, we define a new discrete random variable $X_P$ by:
 	
 	$$Pr(X_P = t) = \begin{cases} 
-	Pr(X\in B) & \text{If $t$ is the minimum of some } B \in P, \\
+	Pr(X\in B) &  \text{if } t = min(B) \wedge  B \in P, \\
 	0      & \text{otherwise.}
 	\end{cases}$$
 \end{definition}
 
 
 \begin{definition}
-	For discrete real-valued variables $X_1$ and $X_2$, we say that $X_2$ is a one-sided Kolmogorov approximation, with the parameters $\varepsilon$ and $m$, of $X_1$, denoted by 
-	$X_1 \preceq_{\varepsilon,n} X_2$, if, for all $t$, $0 \leq   F_{X_2}(t)-F_{X_1}(t) \leq \varepsilon$ and the size of the support of $X_2$ is smaller or equal to $m$. We say that the approximation is tight if there exists no  $X_2' \neq X_2$ such that $X_1 \preceq_{\varepsilon,m} X_2'$ and, for all $t$, $F_{X_2'}(t) \leq F_{X_2}(t)$. 
+	For discrete real-valued variables $X_1$ and $X_2$, we say that $X_2$ is a one-sided Kolmogorov approximation of $X_1$, with the parameters $\varepsilon$ and $m$, denoted by 
+	$X_1 \preceq_{\varepsilon,m} X_2$, if $\forall t$, $0 \leq   F_{X_2}(t)-F_{X_1}(t) \leq \varepsilon$ and the $\mid\support(X_2)\mid \leq m$. We say that the approximation is \textbf{tight} if there exists no  $X_2' \neq X_2$ such that $X_1 \preceq_{\varepsilon,m} X_2'$ and, $\forall t$, $F_{X_2'}(t) \leq F_{X_2}(t)$. 
 \end{definition}
 
 \begin{proposition}
 	For a discrete real-valued random variable $X$ and $m \in \mathbb{N}$, 
-	let $\varepsilon = \min\{\varepsilon \colon \text{ there is $X'$ such that $X \preceq_{\varepsilon,m} X'$}\}$ be the best possible approximation error for $X$ with a random variable whose support of size $m$. This same level of approximation can be obtained with a partition, i.e., there is consecutive partition $P$ of $\supp(X)$ such that $X \preceq_{\varepsilon,m} X_P$.
+	let $\varepsilon = \min\{\varepsilon \colon \text{  $\exists X'$ such that $X \preceq_{\varepsilon,m} X'$}\}$ be the best possible approximation error for $X$ with a random variable whose support of size $m$. This same level of approximation can be obtained with a partition, i.e., there is consecutive partition $P$ of $\supp(X)$ such that $X \preceq_{\varepsilon,m} X_P$.
 	
 \end{proposition}
 
 \begin{proof}
 Let $X'$ be such that $X \preceq_{\varepsilon,m} X'$. Assume that $t_0,t_1,\dots,t_n$ are all the elements in the support of $X$ in ascending order. Define the random variable $X''$ by 
 $$
-P_{X''}(t) = \begin{cases}
-P(X' \leq t_0)           & \text{if } t=t_0  \\ 
-P(t_{i-1} < X' \leq t_i) & \text{if } t=t_i \text{ for some } i \neq 0 \\ 
+Pr(X''=t) = \begin{cases}
+Pr(X' \leq t_0)           & \text{if } t=t_0  \\ 
+Pr(t_{i-1} < X' \leq t_i) & \text{if } t=t_i \text{ for some } i \neq 0 \\ 
 0                        & \text{otherwise}
 \end{cases}
 $$
@@ -80,9 +80,9 @@ We will show now that: (1) $\support(X'') \subseteq \support(X')$ and (2) $X \pr
 
 Let $s_0,s_1,\dots,s_m$ be the elements in the support of $X''$ in ascending order. Define the random variable $X'''$ by:
 $$
-P_{X'''}(t) = \begin{cases}
-P(X \leq s_0)           & \text{if } t=s_0  \\ 
-P(s_{i-1} < X \leq s_i) & \text{if } t=s_i \text{ for some } i \neq 0 \\ 
+Pr(X'''=t) = \begin{cases}
+Pr(X \leq s_0)           & \text{if } t=s_0  \\ 
+Pr(s_{i-1} < X \leq s_i) & \text{if } t=s_i \text{ for some } i \neq 0 \\ 
 0                       & \text{otherwise}
 \end{cases}
 $$
@@ -93,6 +93,13 @@ To Liat: Maybe we better define $X'''$ directly from $X'$ (without defining $X''
 	  0    & \text{if } t < t_0 \\
 	  F_{X'}(t_i) & \text{if } t = t_i     \\
 	  F_{X'}(t_{i-1})    & \text{if } t_{i-1} < t < t_i \\
+	  1               & t \geq t_n
+	\end{cases}$$
+	
+	$$Pr(X'''=t)=\begin{cases}
+	  0    & \text{if } t < t_0 \\
+	  Pr(X'\leq t_i) & \text{if } t = t_i     \\
+	  Pr(X' \leq t_{i-1})    & \text{if } t_{i-1} < t < t_i \\
 	  1               & t \geq t_n
 	\end{cases}$$
 \end{proof}
