@@ -23,11 +23,11 @@
 \usepackage[toc,page]{appendix}
 \usepackage{listings}
 \newtheorem{lemma}{Lemma}
-\newtheorem{definition}[lemma]{Definition}
-\newtheorem{theorem}[lemma]{Theorem}
-\newtheorem{claim}[lemma]{Claim}
-\newtheorem{example}[lemma]{Example}
-\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{claim}{Claim}
+\newtheorem{example}{Example}
+\newtheorem{proposition}{Proposition}
 
 
 \DeclareMathOperator{\supp}{support}
@@ -74,37 +74,50 @@ Let $X'$ be such that $X \preceq_{\varepsilon,m} X'$. Specifically, for all $t$,
 F_{X}(t) \leq F_{X'}(T) \leq F_X(t)+\varepsilon
 \label{*}
 \end{equation}
+The proof has two steps of constructions:$1) X'\Rightarrow X''; 2) X''\Rightarrow X'''$.
+
 Assume that $t_0,t_1,\dots,t_n$ are all the elements in the support of $X$ in ascending order. Define the random variable $X''$ by 
 $$
-f_{X''}(t) = \begin{cases}
+Pr(X''=t) = \begin{cases}
 Pr(X' \leq t_0)           & \text{if } t=t_0  \\ 
 Pr(t_{i-1} < X' \leq t_i) & \text{if } t=t_i \text{ for some } i \neq 0 \\ 
 0                         & \text{otherwise}
 \end{cases}
 $$
-Since can we only assign a non-zero probability to $P_{X''}(t)$ if $t \in \support(X)$, we have that $\support(X'') \subseteq \support(X)$. We will show now that $F_{X}(t) \leq  F_{X''}(t) \leq F_{X'}(t)$ for all $t$. We will examine different $t$s as follows. 
+
+We will show now that: (1) $\support(X'') \subseteq \support(X)$; (2) $X \preceq_{\varepsilon,m} X'''$.
+Only a non-zero probability can be assigned to $Pr(X''=t)$, if $t \in \support(X)$, then $\support(X'') \subseteq \support(X)$. Furthermore, by construction of $X''$, $|\support(X'')|\leq m$ since $|\support(X')|\leq m$ and every $ t\in \support(X')$ is mapped to a value in $\support(X)$ then $|\support(X'')|\leq |\support(X')|$
+
+In addition, we will show now that $F_{X}(t) \leq  F_{X''}(t) \leq F_{X'}(t)$ for all $t$ by examine the different $t$s as follows: 
 \begin{description}
-\item[For $t < t_0$:] $F_{X''}(t)=F_{X}(t)=0$. Since $F_{X'}(t) \geq 0$ for all $t$, we get that $F_{X}(t) \leq  F_{X''}(t) \leq F_{X'}(t)$.
-\item[For $t=t_i$:] $F_{X'}(t)=F_{X''}(t)$ and $F_{X}(t) \leq F_{X'}(t)$ by \eqref{*}.
-\item[For $t_{i-1} < t < t_i$:] $F_{X''}(t)= F_{X''}(t_{i-1})$ and $F_{X}(t)=F_{X}(t_{i-1})$. Since we already have that $F_{X}(t_{i-1}) \leq F_{X''}(t_{i-1}) \leq F_{X'}(t_{i-1})$, we get that $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t_{i-1})$. By monotonicity of CDFs, $F_{X'}(t_{i-1}) \leq F_{X'}(t)$ therefore $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$.
-\item[For $t > t_n$:] $F_{X}(t)= F_{X''}(t)=1$ and, by~\eqref{*}, since CDFs are always smaller or equal to one, also $F_{X'}(t)=1$.
+\item[Case $t < t_0$:] $F_{X''}(t)=F_{X}(t)=0$. Since $F_{X'}(t) \geq 0$ for all $t$, we get that $F_{X}(t) \leq  F_{X''}(t) \leq F_{X'}(t)$.
+\item[Case $t=t_i$:] $F_{X'}(t)=F_{X''}(t)$ and $F_{X}(t) \leq F_{X'}(t)$ by Eq. \eqref{*}.
+\item[Case $t_{i-1} < t < t_i$:]
+$F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$ from Claim~\ref{suppGMin}
+% $F_{X''}(t)= F_{X''}(t_{i-1})$ and $F_{X}(t)=F_{X}(t_{i-1})$. Since we already have that $F_{X}(t_{i-1}) \leq F_{X''}(t_{i-1}) \leq F_{X'}(t_{i-1})$, we get that $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t_{i-1})$. By monotonicity of CDF, $F_{X'}(t_{i-1}) \leq F_{X'}(t)$ therefore $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$.
+\item[Case $t > t_n$:] $F_{X}(t)= F_{X''}(t)=1$ and, by Eq.~\eqref{*}, since CDFs are always smaller or equal to one, also $F_{X'}(t)=1$.
 
 \end{description}
-
-
-and (2) $X \preceq_{\varepsilon,m} X''$. 
-
+From the four different cases of $t$ and that $\supp(X'')\leq m$ we established that $X \preceq_{\varepsilon,m} X''$. 
 
 Let $s_0,s_1,\dots,s_m$ be the elements in the support of $X''$ in ascending order. Define the random variable $X'''$
 $$
 Pr(X'''=t) = \begin{cases}
-Pr(X \leq s_0)           & \text{if } t=s_0  \\ 
-Pr(s_{i-1} < X \leq s_i) & \text{if } t=s_i \text{ for some } i \neq 0 \\ 
+Pr(s_{i} \leq X < s_{i+1}) & \text{if } t=s_i \text{ for some } i > m \\ 
+Pr(X \geq s_m)           & \text{if } t=s_m  \\ 
 0                        & \text{otherwise}
 \end{cases}
 $$
-We will show now that: (1) there is a partition $P$ such that $X'''=X_P$; (2) $X \preceq_{\varepsilon,m} X'''$. \todo{Add proofs of these claims}
-
+We will show that: (1)$X \preceq_{\varepsilon,m} X'''$; (2) There is a partition $P$ such that $X'''=X_P$. 
+Again, we will show that $F_{X}(t) \leq  F_{X'''}(t) \leq F_{X''}(t)$ for all $t$ by examine the different values of $t$ as follows: 
+\begin{description}
+\item[Case $t < s_0$:] $F_{X'''}(t)=F_{X''}(t)=F_{X}(t)=0$. 
+\item[Case $t=s_i$:] First $F_{X}(t) \leq F_{X'''}(t)$ since $F_{X}(t) \leq F_{X}(t)+Pr(s_{i} < X < s_{i+1})$ 
+and second $F_{X'''}(t) \leq F_{X''}(t)$  from Claim~\ref{partGMin}. Therefore $F_{X}(t) \leq F_{X'''}(t) \leq F_{X''}(t)$.
+\item[Case $s_{i-1} < t < s_i$:] $F_{X''}(t)= F_{X''}(t_{i-1})$, $F_{X}(t)=F_{X}(t_{i-1})$, and $F_{X'''}(t)= F_{X'''}(t_{i-1})$. Therefore $F_{X}(t) \leq F_{X'''}(t) \leq F_{X''}(t)$.  
+\item[Case $t > s_n$:] $F_{X}(t)= F_{X''}(t)=1$ and, by~\eqref{*}, since CDFs are always smaller or equal to one, also $F_{X'}(t)=1$.
+\end{description}
+From the four different cases of $t$ and that $\supp(X'')=\supp(X''')$ we established that $X \preceq_{\varepsilon,m} X'''$. 
 %To Liat: Maybe we better define $X'''$ directly from $X'$ (without defining $X''$) by 
 %	$$F_{X'''}(t)=\begin{cases}
 %	  0    & \text{if } t < t_0 \\
@@ -113,8 +126,25 @@ We will show now that: (1) there is a partition $P$ such that $X'''=X_P$; (2) $X
 %	  1               & t \geq t_n
 %	\end{cases}$$
 \end{proof}
+\begin{claim}\label{suppGMin}
+If $t_{i-1} < t < t_i$ then $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$
+\end{claim}
+\begin{proof}
+$F_{X''}(t)= F_{X''}(t_{i-1})$ and $F_{X}(t)=F_{X}(t_{i-1})$. Since we already have that $F_{X}(t_{i-1}) \leq F_{X''}(t_{i-1}) \leq F_{X'}(t_{i-1})$, we get that $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t_{i-1})$. By monotonicity of CDF, $F_{X'}(t_{i-1}) \leq F_{X'}(t)$ therefore $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$.
+\end{proof}
 
+\begin{claim}\label{partGMin}
+If $t=s_i$ then $F_{X'''}(t) \leq F_{X''}(t)$
+\end{claim}
+\begin{proof}
+\begin{align*}
+&Pr(X''' \leq t) \leq Pr(X''\leq t) \Rightarrow\\
+&Pr(X\leq s) + Pr(s<X< s_{i+1}) \leq Pr(X\leq s) + \varepsilon \Rightarrow\\
+&Pr(s<X< s_{i+1})\leq \varepsilon
+\end{align*}
+True from Eq.~\ref{*}
 
+\end{proof}
 \begin{theorem}
 Given $X_1 \dots X_k$ discrete random variables in a table representation and $m \in \mathbb{N}$, if $X'=OptimalTrim(X_1 \dots X_k,m)$, a discrete random variable and a partition of $X$ with a support of size $\leq m$ then $\max\limits_{t}|F_{\sum_1^k X_i}(t)-F_{X'}(t)|$ is minimal.
 \end{theorem}
