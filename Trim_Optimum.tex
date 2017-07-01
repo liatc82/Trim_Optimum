@@ -62,11 +62,11 @@ $B \subseteq S$ is \emph{consecutive} if any $s\in S$ that is smaller than $\max
 	%We say that the approximation is \textbf{tight} if there exists no  $X_2' \neq X_2$ such that $X_1 \preceq_{\varepsilon,m} X_2'$ and, $\forall t$, $F_{X_2'}(t) \leq F_{X_2}(t)$. 
 \end{definition}
 
-\begin{proposition}
+\begin{theorem}\label{approxAsPart}
 	For a discrete real-valued random variable $X$ and $m \in \mathbb{N}$, 
 	let $\varepsilon = \min\{\varepsilon \colon \text{  $\exists X'$ such that $X \preceq_{\varepsilon,m} X'$}\}$ be the best possible approximation error for $X$ with a random variable whose support of size $m$. This same level of approximation can be obtained with a partition, i.e., there is consecutive partition $P$ of $\supp(X)$ such that $X \preceq_{\varepsilon,m} X_P$.
 	
-\end{proposition}
+\end{theorem}
 
 \begin{proof}
 Let $X'$ be such that $X \preceq_{\varepsilon,m} X'$. Specifically, for all $t$,
@@ -118,13 +118,8 @@ and second $F_{X'''}(t) \leq F_{X''}(t)$  from Claim~\ref{partGMin}. Therefore $
 \item[Case $t > s_n$:] $F_{X}(t)= F_{X''}(t)=1$ and, by~\eqref{*}, since CDFs are always smaller or equal to one, also $F_{X'}(t)=1$.
 \end{description}
 From the four different cases of $t$ and that $\supp(X'')=\supp(X''')$ we established that $X \preceq_{\varepsilon,m} X'''$. 
-%To Liat: Maybe we better define $X'''$ directly from $X'$ (without defining $X''$) by 
-%	$$F_{X'''}(t)=\begin{cases}
-%	  0    & \text{if } t < t_0 \\
-%	  F_{X'}(t_i) & \text{if } t = t_i     \\
-%	  F_{X'}(t_{i-1})    & \text{if } t_{i-1} < t < t_i \\
-%	  1               & t \geq t_n
-%	\end{cases}$$
+The next step is prove that $X'''=X_P$, by presenting a partition $P$. As shown before, $\support(X)=\{t_0,t_1,\dots,t_n\}$,  $\support(X''')=\{s_0,s_1,\dots,s_m\}$, and concluded that $\support(X''')\subseteq \support(X)$. In addition, $\forall 0\leq i\leq m, Pr(X'''=s_i) = Pr(s_i \leq X \leq s_{i+1})=\sum^{s_{i+1}}_{t=s_i} Pr(X=t)$ therefore $P = \{s_0,s_1,\dots,s_m\}$.
+By definition~\ref{partition}, $X'''=X_P$, moreover, by definition~\ref{part_consecutive} $P$ is a consecutive partition.
 \end{proof}
 \begin{claim}\label{suppGMin}
 If $t_{i-1} < t < t_i$ then $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$
@@ -145,48 +140,98 @@ If $t=s_i$ then $F_{X'''}(t) \leq F_{X''}(t)$
 True from Eq.~\ref{*}
 
 \end{proof}
-\begin{theorem}
-Given $X_1 \dots X_k$ discrete random variables in a table representation and $m \in \mathbb{N}$, if $X'=OptimalTrim(X_1 \dots X_k,m)$, a discrete random variable and a partition of $X$ with a support of size $\leq m$ then $\max\limits_{t}|F_{\sum_1^k X_i}(t)-F_{X'}(t)|$ is minimal.
-\end{theorem}
-
-\begin{proof}
-From Lemma~\ref{consecutive} we get that the optimal partition for the objective function $|F_{\sum_1^k X_i}(t)-F_{X'}(t)|$ is consecutive.
-Using this fact allow us to reduce our problem to the same problem solved by Rothblum in the paper from 1982. Let $X = \sum_{i=1}^k X_i$, from Rothblum we first construct the weighted graph $G = (V,E)$, where $V = \support(X), E = \{\forall i,j \in V, (i,j)\in E\}$ and the weights $\forall e=(i,j)\in E, w(e) = |F_{X}(i)-F_{X}(j)|$. In a classical Rothblum the shortest path is found by Bellman Ford algorithm, in our case we use a variation of Bellman-Ford, minimax bottleneck path by using the function $bottleneck(x) =    min   [max(bottleneck(v),w(e))]$. Bellman-Ford algorithm can be forced to return path of some length, in our case $m$, meaning, find the lightest maximal edge in a length $m$ path. 
-$X'$ is the result of $OptimalTrim(X_1 \dots X_n,m)$, which is the same as described above. 
-\end{proof}
 
 \begin{algorithm}
   \DontPrintSemicolon
   \SetKwFunction{Sequence}{Sequence} 
   \SetKwFunction{Convolv}{Conv}
   \SetKwFunction{Trim}{Trim}
-
-   $D=((0,1))$ //  Dummy random var.: $0$ with prob. $1$ \;
-  \For{$i=1$ \emph{\KwTo} $k$} {
-	$D$=Convolve($D, X_i$)\; 
-	}
-   $G=(E,V)$ \;
-   $V = \support(D)$\;
-   $E = \{\forall i,j \in V, (i,j)\in E\}$\;
-   \ForEach{$e=(i,j) \in  E $ }{
-   $w(e) = F_D(i)+\sum_{t=i}^j P_D(t)-F_D(i)$
-   }
-   $L, \varepsilon$=BellmanFord($G$, $min(V)$, $m$, $bottleneck(x) =    min   [max(bottleneck(v),w(e))]$) /* Run Bellman-Ford algorithm as minimax bottleneck path version, $m$ times, starting with a single source, where $L$ is the path */ \;
-   %http://www.cs.cmu.edu/afs/cs/academic/class/15451-f04/www/lectures/lect1012.txt
-   $D'=()$\;
+  \SetKwFunction{getPartition}{getPartition}
+  \SetKwFunction{bellmanFordMinMaxM}{bellmanFordMinMaxM}
+   $dn =\{max(\support(X))+1\} $\;
+   $S = \support(X)\cup dn$\;
+   $L,\varepsilon$ = \getPartition($S$,$m$)\;
    \ForEach{$e=(i,j) \in  L $ }{
-   $D' = append(D', (i,\sum_{t=i}^j P_D(t))$
+   $X' = append(X', (i,Pr(i\leq X<j))$
    }
-   \Return $D, bottleneck(x)$\;
+   \Return $X', \varepsilon$\;
+   %-------------------------------%
+  \SetKwProg{myproc}{Procedure}{}{}
+  \myproc{
+  getPartition($S$,$m$)
+  }{$V = S$\;
+   $E = \{\forall i,j \in V, (i,j)\in E\}$\;
+   $G=(E,V)$ \;
+
+   \ForEach{$e=(i,j) \in  E $ }{
+   $w(e) = Pr(i<X<j)$
+   }
+   \Return \bellmanFordMinMaxM($G$, $min(V)$, $m$)  \; }
   %-------------------------------%
   \SetKwProg{myproc}{Procedure}{}{}
   \myproc{
-  BellmanFord($G$,$source$,$m$,$f$)
-  }{ }
+  bellmanFordMinMaxM($G$,$source$,$m$)
+  }{$bottleneck(x) =    min   [max(bottleneck(v),w(e))]$\;
+  /* Run Bellman-Ford algorithm as minimax bottleneck path version, $m$ times, starting with a single source, where $L$ is the path and $\varepsilon$ is the minimal bottleneck weight */ }
+  
      
-\caption{OptimalTrim ($X_1,\dots,X_k$ , $m$)}  
+\caption{OptTrim ($X$, $m$)}  
 \label{alg:sequence}
 \end{algorithm}
+
+\begin{theorem}
+Given $X$ a discrete random variables in a table representation and $m \in \mathbb{N}$. If $X'=OptTrim(X,m)$, then $X\preceq_{m,\varepsilon} X$ such that $X' \in arg\min\limits_{X'} \max\limits_{t} (F_{X'}(t)-F_X(t)) $. 
+
+%$\max\limits_{t}|F_{\sum_1^k X_i}(t)-F_{X'}(t)|$ is minimal.
+
+\end{theorem}
+\begin{proof}
+As proved in Theorem~\ref{approxAsPart}, given a partition $P$, $X_P \in arg\min\limits_{X'} \max\limits_{t} (F_{X'}(t)-F_X(t)) $. In order to obtain such a consecutive partition $P$, we may use similar idea to the one presented in \cite{chakravarty1982partitioning}. Construct a complete graph $G$ where each of the nodes $V$ represented by the support of $X$. The weight $w$ of each edge $(i,j)\in E$, determine by $w =F_X(j-1)-F_X(i)=Pr(i<X<j)$ the probability of $X$ to get a value between $i,j$ non inclusive. Than, fined the $m$ edges path which contains the lightest bottleneck. This can be achieved by using the $Bellman-Ford$ algorithm with two tweaks: The first, iterate the graph $G$ only $m$ times, the second, fined lightest bottleneck and not shortest path by "relaxing" in the following manner $bottleneck(x) =    min   [max(bottleneck(v),w(e))]$. Form the resulted path, it is easy to derive the $X_P$.
+\end{proof}
+
+%\begin{theorem}
+%Given $X_1 \dots X_k$ discrete random variables in a table representation and $m \in \mathbb{N}$, if $X'=OptimalTrim(X_1 \dots X_k,m)$, a discrete random variable and a partition of $X$ with a support of size $\leq m$ then $\max\limits_{t}|F_{\sum_1^k X_i}(t)-F_{X'}(t)|$ is minimal.
+%
+%\end{theorem}
+%
+%\begin{proof}
+%From Lemma~\ref{consecutive} we get that the optimal partition for the objective function $|F_{\sum_1^k X_i}(t)-F_{X'}(t)|$ is consecutive.
+%Using this fact allow us to reduce our problem to the same problem solved by Rothblum in the paper from 1982. Let $X = \sum_{i=1}^k X_i$, from Rothblum we first construct the weighted graph $G = (V,E)$, where $V = \support(X), E = \{\forall i,j \in V, (i,j)\in E\}$ and the weights $\forall e=(i,j)\in E, w(e) = |F_{X}(i)-F_{X}(j)|$. In a classical Rothblum the shortest path is found by Bellman Ford algorithm, in our case we use a variation of Bellman-Ford, minimax bottleneck path by using the function $bottleneck(x) =    min   [max(bottleneck(v),w(e))]$. Bellman-Ford algorithm can be forced to return path of some length, in our case $m$, meaning, find the lightest maximal edge in a length $m$ path. 
+%$X'$ is the result of $OptimalTrim(X_1 \dots X_n,m)$, which is the same as described above. 
+%\end{proof}
+
+%\begin{algorithm}
+%  \DontPrintSemicolon
+%  \SetKwFunction{Sequence}{Sequence} 
+%  \SetKwFunction{Convolv}{Conv}
+%  \SetKwFunction{Trim}{Trim}
+%
+%   $D=((0,1))$ //  Dummy random var.: $0$ with prob. $1$ \;
+%  \For{$i=1$ \emph{\KwTo} $k$} {
+%	$D$=Convolve($D, X_i$)\; 
+%	}
+%   $G=(E,V)$ \;
+%   $V = \support(D)$\;
+%   $E = \{\forall i,j \in V, (i,j)\in E\}$\;
+%   \ForEach{$e=(i,j) \in  E $ }{
+%   $w(e) = F_D(i)+\sum_{t=i}^j P_D(t)-F_D(i)$
+%   }
+%   $L, \varepsilon$=BellmanFord($G$, $min(V)$, $m$, $bottleneck(x) =    min   [max(bottleneck(v),w(e))]$) /* Run Bellman-Ford algorithm as minimax bottleneck path version, $m$ times, starting with a single source, where $L$ is the path */ \;
+%   %http://www.cs.cmu.edu/afs/cs/academic/class/15451-f04/www/lectures/lect1012.txt
+%   $D'=()$\;
+%   \ForEach{$e=(i,j) \in  L $ }{
+%   $D' = append(D', (i,\sum_{t=i}^j P_D(t))$
+%   }
+%   \Return $D, bottleneck(x)$\;
+%  %-------------------------------%
+%  \SetKwProg{myproc}{Procedure}{}{}
+%  \myproc{
+%  BellmanFord($G$,$source$,$m$,$f$)
+%  }{ }
+%     
+%\caption{OptimalTrim ($X_1,\dots,X_k$ , $m$)}  
+%\label{alg:sequence}
+%\end{algorithm}
 
 
 Two not proved yet issues:
