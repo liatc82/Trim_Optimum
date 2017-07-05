@@ -80,7 +80,9 @@ Let $X'$ be such that $X \preceq_{\varepsilon^*,m} X'$. Specifically, for all $t
 F_{X}(t) \leq F_{X'}(T) \leq F_X(t)+\varepsilon^*
 \label{*}
 \end{equation}
-The proof has two steps of constructions:$1) X'\Rightarrow X''; 2) X''\Rightarrow X'''$.
+The proof goes in two steps: we first construct a variable $X''$ form $X'$ that approximate $X$ as $X'$ does, i.e., $X \preceq_{\varepsilon^*,m} X''$, but also has the property that its support is a subset of the support of $X$. Then, form $X''$, we construct another random variable, $X'''$, that on top of being an approximation of $X$ with the same parameters is also equal to $X_P$ for some partition $P$. 
+
+% constructions:$1) X'\Rightarrow X''; 2) X''\Rightarrow X'''$.
 
 Assume that $t_0,t_1,\dots,t_n$ are all the elements in the support of $X$ in ascending order. Define the random variable $X''$ by 
 $$
@@ -92,7 +94,9 @@ Pr(t_{i-1} < X' \leq t_i) & \text{if } t=t_i \text{ for some } i \neq 0 \\
 $$
 
 We will show now that: (1) $\support(X'') \subseteq \support(X)$; (2) $X \preceq_{\varepsilon^*,m} X''$.
-Only a non-zero probability can be assigned to $Pr(X''=t)$, if $t \in \support(X)$, then $\support(X'') \subseteq \support(X)$. Furthermore, by construction of $X''$, $|\support(X'')|\leq m$ since $|\support(X')|\leq m$ and every $ t\in \support(X')$ is mapped to a value in $\support(X)$ then $|\support(X'')|\leq |\support(X')|$
+Since we only assign a non-zero probability to $Pr(X''=t)$ if $t=t_0$ or if $t-t_i$, i.e., only if $t$ is in the support of $X$, we have that $\support(X'') \subseteq \support(X)$ by construction. Furthermore, by construction of $X''$, $|\support(X'')|\leq m$ since $|\support(X')|\leq m$ and every $ t\in \support(X')$ is mapped to a 
+$ Gera: I don't understand the following sentence :-(
+value in $\support(X)$ then $|\support(X'')|\leq |\support(X')|$
 
 In addition, we will show now that $F_{X}(t) \leq  F_{X''}(t) \leq F_{X'}(t)$ for all $t$ by examine the different $t$s as follows: 
 \begin{description}
