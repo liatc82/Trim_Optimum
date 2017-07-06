@@ -94,7 +94,7 @@ Pr(t_{i-1} < X' \leq t_i) & \text{if } t=t_i \text{ for some } i \neq 0 \\
 $$
 
 We will show now that: (1) $\support(X'') \subseteq \support(X)$; (2) $X \preceq_{\varepsilon^*,m} X''$.
-Since we only assign a non-zero probability to $Pr(X''=t)$ if $t=t_0$ or if $t=t_i$ for some $i$, i.e., only if $t$ is in the support of $X$, we have that $\support(X'') \subseteq \support(X)$. 
+Since we only assign a non-zero probability to $f_{X''}(t)$ if $t=t_0$ or if $t=t_i$ for some $i$, i.e., only if $t$ is in the support of $X$, we have that $\support(X'') \subseteq \support(X)$. 
 Furthermore, if $t_i \in \support(X'')$ then $Pr(t_{i-1} < X' \leq t_i) \neq 0$ which means that there is some $t_{i-1} < t' \leq t_i$ such that $t' \in \support(X')$. To also handle the case where $i=0$, we denote $t_{-1}=-\infty$. This (unique) mapping gives us that $|\support(X'')| \leq |\support(X')| \leq m$. To complete the proof of the properties of $X''$, we will show now that $F_{X}(t) \leq  F_{X''}(t) \leq F_{X'}(t)$ for all $t$ by examining the different $t$s as follows: 
 \begin{description}
 \item[Case $t < t_0$:] $F_{X''}(t)=F_{X}(t)=0$. Since $F_{X'}(t) \geq 0$ for all $t$, we get that $F_{X}(t) \leq  F_{X''}(t) \leq F_{X'}(t)$.
