@@ -120,13 +120,20 @@ Again, we will show that $F_{X}(t) \leq  F_{X'''}(t) \leq F_{X''}(t)$ for all $t
 \begin{description}
 \item[Case $t < s_0$:] $F_{X'''}(t)=F_{X''}(t)=F_{X}(t)=0$. 
 \item[Case $t=s_i$:] First, $F_{X}(t) \leq F_{X'''}(t)$ since $F_{X'''}(t) = F_{X}(t)+Pr(s_{i} < X < s_{i+1})$.
-Second, $F_{X'''}(t) \leq F_{X''}(t)$  since 
+Second, we prove that $F_{X'''}(t) \leq F_{X''}(t)$ by showing $F_{X''}(t) - F_{X'''}(t)\geq 0$ 
+
 \begin{align*}
-&Pr(s_i<X< s_{i+1}) \leq \varepsilon^* \Rightarrow\\
-&Pr(X\leq s_i) + Pr(s_i<X< s_{i+1}) \leq Pr(X\leq s_i) + \varepsilon^* \Rightarrow\\
-&Pr(X''' \leq s_i) \leq Pr(X'\leq s_i)  \Rightarrow \\
-&Pr(X''' \leq s_i) \leq Pr(X''\leq s_i) 
+&F_{X''}(s_i) - F_{X'''}(s_i)\geq 0\\
+&F_{X}(s_i)+\varepsilon' - F_{X}(s_i)+Pr(s_i<X< s_{i+1})\geq 0\\
+&\varepsilon'-Pr(s_i<X< s_{i+1})\geq 0
 \end{align*}
+Assume by contradiction that $\varepsilon'\leq Pr(s_i<X< s_{i+1})$, therefore 
+%\begin{align*}
+%&Pr(s_i<X< s_{i+1}) \leq \varepsilon^* \Rightarrow\\
+%&Pr(X\leq s_i) + Pr(s_i<X< s_{i+1}) \leq Pr(X\leq s_i) + \varepsilon^* \Rightarrow\\
+%&Pr(X''' \leq s_i) \leq Pr(X'\leq s_i)  \Rightarrow \\
+%&Pr(X''' \leq s_i) \leq Pr(X''\leq s_i) 
+%\end{align*}
 
 
 \item[Case $s_{i-1} < t < s_i$:] $F_{X''}(t)= F_{X''}(t_{i-1})$, $F_{X}(t)=F_{X}(t_{i-1})$, and $F_{X'''}(t)= F_{X'''}(t_{i-1})$. Therefore $F_{X}(t) \leq F_{X'''}(t) \leq F_{X''}(t)$.  
