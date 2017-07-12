@@ -120,12 +120,12 @@ Again, we will show that $F_{X}(t) \leq  F_{X'''}(t) \leq F_{X''}(t)$ for all $t
 \begin{description}
 \item[Case $t < s_0$:] $F_{X'''}(t)=F_{X''}(t)=F_{X}(t)=0$. 
 \item[Case $t=s_i$:] First, $F_{X}(t) \leq F_{X'''}(t)$ since $F_{X'''}(t) = F_{X}(t)+Pr(s_{i} < X < s_{i+1})$.
-Second, we prove that $F_{X'''}(t) \leq F_{X''}(t)$ by showing $F_{X''}(t) - F_{X'''}(t)\geq 0$. Lets look at the maximal $s' \in (s_i,s_{i+1})$. From Claim~\ref{suppGMin} $F_{X''}(s_i)=F_{X''}(s')$ .
+Second, we prove that $F_{X'''}(t) \leq F_{X''}(t)$ by showing $F_{X''}(t) - F_{X'''}(t)\geq 0$. Lets look at the maximal $s' \in (s_i,s_{i+1})\cap \support(X)$. From the previous cases (see Claim~\ref{suppGMin} for example) $F_{X''}(s_i)=F_{X''}(s')$ .
 
 \begin{align*}
 &F_{X''}(s')-F_{X}(s')\geq 0 \Longleftrightarrow\\
-&F_{X''}(s) - F_{X}(s)-Pr(s_i<X< s_{i+1})\geq 0 \Longleftrightarrow\\
-&F_{X''}(s) - F_{X'''}(s)\geq 0 \\
+&F_{X''}(s_i) - F_{X}(s_i)-Pr(s_i<X< s_{i+1})\geq 0 \Longleftrightarrow\\
+&F_{X''}(s_i) - F_{X'''}(s_i)\geq 0 \\
 \end{align*}
 
 %\begin{align*}
