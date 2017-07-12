@@ -99,9 +99,8 @@ Furthermore, if $t_i \in \support(X'')$ then $Pr(t_{i-1} < X' \leq t_i) \neq 0$ 
 \begin{description}
 \item[Case $t < t_0$:] $F_{X''}(t)=F_{X}(t)=0$. Since $F_{X'}(t) \geq 0$ for all $t$, we get that $F_{X}(t) \leq  F_{X''}(t) \leq F_{X'}(t)$.
 \item[Case $t=t_i$:] $F_{X'}(t)=F_{X''}(t)$ and $F_{X}(t) \leq F_{X'}(t)$ by Eq. \eqref{*}.
-\item[Case $t_{i-1} < t < t_i$:]
-$F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$ from Claim~\ref{suppGMin}
-% $F_{X''}(t)= F_{X''}(t_{i-1})$ and $F_{X}(t)=F_{X}(t_{i-1})$. Since we already have that $F_{X}(t_{i-1}) \leq F_{X''}(t_{i-1}) \leq F_{X'}(t_{i-1})$, we get that $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t_{i-1})$. By monotonicity of CDF, $F_{X'}(t_{i-1}) \leq F_{X'}(t)$ therefore $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$.
+\item[Case $t_{i-1} < t < t_i$:] $F_{X''}(t)= F_{X''}(t_{i-1})$ and $F_{X}(t)=F_{X}(t_{i-1})$. Since we already have that $F_{X}(t_{i-1}) \leq F_{X''}(t_{i-1}) \leq F_{X'}(t_{i-1})$, we get that $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t_{i-1})$. By monotonicity of CDF, $F_{X'}(t_{i-1}) \leq F_{X'}(t)$ therefore $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$.
+
 \item[Case $t > t_n$:] $F_{X}(t)= F_{X''}(t)=1$ and, by Eq.~\eqref{*}, since CDFs are always bounded by one, also $F_{X'}(t)=1$.
 
 \end{description}
@@ -129,12 +128,6 @@ From the four different cases of $t$ and that $\supp(X'')=\supp(X''')$ we establ
 The next step is prove that $X'''=X_P$, by presenting a partition $P$. As shown before, $\support(X)=\{t_0,t_1,\dots,t_n\}$,  $\support(X''')=\{s_0,s_1,\dots,s_m\}$, so $\support(X''')\subseteq \support(X)$. In addition, $\forall 0\leq i\leq m, Pr(X'''=s_i) = Pr(s_i \leq X \leq s_{i+1})$ therefore $P = \{s_0,s_1,\dots,s_m\}$.
 % Gera: this is not a partition...
 By definition~\ref{partition}, $X'''=X_P$, moreover, by definition~\ref{part_consecutive} $P$ is a consecutive partition.
-\end{proof}
-\begin{claim}\label{suppGMin}
-If $t_{i-1} < t < t_i$ then $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$
-\end{claim}
-\begin{proof}
-$F_{X''}(t)= F_{X''}(t_{i-1})$ and $F_{X}(t)=F_{X}(t_{i-1})$. Since we already have that $F_{X}(t_{i-1}) \leq F_{X''}(t_{i-1}) \leq F_{X'}(t_{i-1})$, we get that $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t_{i-1})$. By monotonicity of CDF, $F_{X'}(t_{i-1}) \leq F_{X'}(t)$ therefore $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$.
 \end{proof}
 
 
