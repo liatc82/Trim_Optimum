@@ -120,13 +120,14 @@ Again, we will show that $F_{X}(t) \leq  F_{X'''}(t) \leq F_{X''}(t)$ for all $t
 \begin{description}
 \item[Case $t < s_0$:] $F_{X'''}(t)=F_{X''}(t)=F_{X}(t)=0$. 
 \item[Case $t=s_i$:] First, $F_{X}(t) \leq F_{X'''}(t)$ since $F_{X'''}(t) = F_{X}(t)+Pr(s_{i} < X < s_{i+1})$.
-Second we show that  $F_{X'''}(s_i) \leq F_{X''}(s_i)$. Since $X \preceq_{\varepsilon^*,m} X''$, $F_X(s_i) + Pr(s_i < X < s_{i+1}) \leq  Pr(X''<s_{i+1})$. As $s_1,\dots,s_m$ is the support of $X''$, $Pr(X''<s_{i+1}) = F_{X''}(s_i)$. By definition $F_{X'''}(s_i) = F_X(s_i) + Pr(s_i < X < s_{i+1})$. Together we get that $F_{X'''}(s_i) \leq F_{X''}(s_i)$.
+Second we show that  $F_{X'''}(s_i) \leq F_{X''}(s_i)$. Since $X \preceq_{\varepsilon^*,m} X''$, $F_X(s_i) + Pr(s_i < X < s_{i+1}) \leq  Pr(X''<s_{i+1})$. As $s_1,\dots,s_m$ is the support of $X''$, $Pr(X''<s_{i+1}) = F_{X''}(s_i)$. By definition $F_{X'''}(s_i) = F_X(s_i) + Pr(s_i < X < s_{i+1})$. Together we get that $F_{X'''}(s_i) \leq F_{X''}(s_i)$. For the case $t=s_m$, the argument holds with the notation $m+1=\infty$. 
 
-\item[Case $s_{i-1} < t < s_i$:] $F_{X''}(t)= F_{X''}(t_{i-1})$, $F_{X}(t)=F_{X}(t_{i-1})$, and $F_{X'''}(t)= F_{X'''}(t_{i-1})$. Therefore $F_{X}(t) \leq F_{X'''}(t) \leq F_{X''}(t)$.  
-\item[Case $t > s_m$:] $F_{X}(t)= F_{X''}(t)=1$ and, by~\eqref{*}, since CDFs are always smaller or equal to one, also $F_{X'}(t)=1$.
+\item[Case $s_{i-1} < t < s_i$:] $F_{X''}(t)= F_{X''}(s_{i-1})$ and $F_{X'''}(t)= F_{X'''}(s_{i-1})$ therefore $F_{X'''}(t) \leq F_{X''}(t)$. Also, $F_X(t) \leq Pr(X<s_i) = F_{X'''}(t)$.
+\item[Case $t > s_m$:] $F_{X''}(t)= F_{X'''}(t)=1$. Since CDFs are always smaller or equal to one, also $F_{X}(t)\leq1$. 
 \end{description}
 From the four different cases of $t$ and that $\supp(X'')=\supp(X''')$ we established that $X \preceq_{\varepsilon^*,m} X'''$. 
-The next step is prove that $X'''=X_P$, by presenting a partition $P$. As shown before, $\support(X)=\{t_0,t_1,\dots,t_n\}$,  $\support(X''')=\{s_0,s_1,\dots,s_m\}$, and concluded that $\support(X''')\subseteq \support(X)$. In addition, $\forall 0\leq i\leq m, Pr(X'''=s_i) = Pr(s_i \leq X \leq s_{i+1})=\sum^{s_{i+1}}_{t=s_i} Pr(X=t)$ therefore $P = \{s_0,s_1,\dots,s_m\}$.
+The next step is prove that $X'''=X_P$, by presenting a partition $P$. As shown before, $\support(X)=\{t_0,t_1,\dots,t_n\}$,  $\support(X''')=\{s_0,s_1,\dots,s_m\}$, so $\support(X''')\subseteq \support(X)$. In addition, $\forall 0\leq i\leq m, Pr(X'''=s_i) = Pr(s_i \leq X \leq s_{i+1})$ therefore $P = \{s_0,s_1,\dots,s_m\}$.
+% Gera: this is not a partition...
 By definition~\ref{partition}, $X'''=X_P$, moreover, by definition~\ref{part_consecutive} $P$ is a consecutive partition.
 \end{proof}
 \begin{claim}\label{suppGMin}
@@ -136,18 +137,6 @@ If $t_{i-1} < t < t_i$ then $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$
 $F_{X''}(t)= F_{X''}(t_{i-1})$ and $F_{X}(t)=F_{X}(t_{i-1})$. Since we already have that $F_{X}(t_{i-1}) \leq F_{X''}(t_{i-1}) \leq F_{X'}(t_{i-1})$, we get that $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t_{i-1})$. By monotonicity of CDF, $F_{X'}(t_{i-1}) \leq F_{X'}(t)$ therefore $F_{X}(t) \leq F_{X''}(t) \leq F_{X'}(t)$.
 \end{proof}
 
-\begin{claim}\label{partGMin}
-If $t=s_i$ then $F_{X'''}(t) \leq F_{X''}(t)$
-\end{claim}
-\begin{proof}
-\begin{align*}
-&Pr(X''' \leq t) \leq Pr(X''\leq t) \Rightarrow\\
-&Pr(X\leq s) + Pr(s<X< s_{i+1}) \leq Pr(X\leq s) + \varepsilon^* \Rightarrow\\
-&Pr(s<X< s_{i+1})\leq \varepsilon^*
-\end{align*}
-True from Eq.~\ref{*}
-
-\end{proof}
 
 %\begin{algorithm}
 %  \DontPrintSemicolon
