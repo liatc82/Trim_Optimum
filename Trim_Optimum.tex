@@ -120,37 +120,7 @@ Again, we will show that $F_{X}(t) \leq  F_{X'''}(t) \leq F_{X''}(t)$ for all $t
 \begin{description}
 \item[Case $t < s_0$:] $F_{X'''}(t)=F_{X''}(t)=F_{X}(t)=0$. 
 \item[Case $t=s_i$:] First, $F_{X}(t) \leq F_{X'''}(t)$ since $F_{X'''}(t) = F_{X}(t)+Pr(s_{i} < X < s_{i+1})$.
-Second, we prove that $F_{X'''}(t) \leq F_{X''}(t)$ by showing $F_{X''}(t) - F_{X'''}(t)\geq 0$. Lets look at the maximal $s' \in (s_i,s_{i+1})\cap \support(X)$. From the previous cases (see Claim~\ref{suppGMin} for example) $F_{X''}(s_i)=F_{X''}(s')$ .
-
-\begin{align*}
-&F_{X''}(s')-F_{X}(s')\geq 0 \Longleftrightarrow\\
-&F_{X''}(s_i) - F_{X}(s_i)-Pr(s_i<X< s_{i+1})\geq 0 \Longleftrightarrow\\
-&F_{X''}(s_i) - F_{X'''}(s_i)\geq 0 \\
-\end{align*}
-
-%\begin{align*}
-%&F_{X''}(s')-F_{X}(s')\geq 0 \Longleftrightarrow\\
-%&F_{X}(s)+\varepsilon_i - F_{X}(s)-Pr(s_i<X< s_{i+1})\geq 0 \Longleftrightarrow\\
-%&\varepsilon_i \geq Pr(s_i<X< s_{i+1})
-%\end{align*}
-
-
-
-
-%\begin{align*}
-%&F_{X''}(s_i) - F_{X'''}(s_i)\geq 0\\
-%&F_{X}(s_i)+\varepsilon_i - F_{X}(s_i)-Pr(s_i<X< s_{i+1})\geq 0\\
-%&\varepsilon_i-Pr(s_i<X< s_{i+1})\geq 0
-%\end{align*}
-%Assume by contradiction that $\varepsilon'\leq Pr(s_i<X< s_{i+1})$, therefore 
-
-%\begin{align*}
-%&Pr(s_i<X< s_{i+1}) \leq \varepsilon^* \Rightarrow\\
-%&Pr(X\leq s_i) + Pr(s_i<X< s_{i+1}) \leq Pr(X\leq s_i) + \varepsilon^* \Rightarrow\\
-%&Pr(X''' \leq s_i) \leq Pr(X'\leq s_i)  \Rightarrow \\
-%&Pr(X''' \leq s_i) \leq Pr(X''\leq s_i) 
-%\end{align*}
-
+Second we show that  $F_{X'''}(s_i) \leq F_{X''}(s_i)$. Since $X \preceq_{\varepsilon^*,m} X''$, $F_X(s_i) + Pr(s_i < X < s_{i+1}) \leq  Pr(X''<s_{i+1})$. As $s_1,\dots,s_m$ is the support of $X''$, $Pr(X''<s_{i+1}) = F_{X''}(s_i)$. By definition $F_{X'''}(s_i) = F_X(s_i) + Pr(s_i < X < s_{i+1})$. Together we get that $F_{X'''}(s_i) \leq F_{X''}(s_i)$.
 
 \item[Case $s_{i-1} < t < s_i$:] $F_{X''}(t)= F_{X''}(t_{i-1})$, $F_{X}(t)=F_{X}(t_{i-1})$, and $F_{X'''}(t)= F_{X'''}(t_{i-1})$. Therefore $F_{X}(t) \leq F_{X'''}(t) \leq F_{X''}(t)$.  
 \item[Case $t > s_m$:] $F_{X}(t)= F_{X''}(t)=1$ and, by~\eqref{*}, since CDFs are always smaller or equal to one, also $F_{X'}(t)=1$.
