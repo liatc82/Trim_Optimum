@@ -13,8 +13,10 @@ def createProbGraph(prob):
     j=0
     vals = prob.keys()
     vals.sort()
+    vals.append(float('Inf'))
     for p in vals:
         g[p] = {}
+        j=0
         for q in vals:
             if q>p:
                 for t in vals[i:j]:
@@ -25,34 +27,46 @@ def createProbGraph(prob):
         i=i+1    
     return g        
 
+def createProb(prob,source,p,m):
+    s = float('Inf')
+    t = float('Inf')
+    aProb = {}
+    i=m
+    while s:
+        s = p[i][s]
+        aProb[s] = getSubProbSum(prob,s,t)
+        print s, t
+        t=s
+        i=i-1
+        if s==source: break
+    return aProb
 
-
-def createMPathsGraph(graph,source,m,g):
-    if m==0:
-        return g
-    g[source] =  graph[source]
-    for v in graph[source]:
-        createMPathsGraph(graph,v,m-1,g)
-    return g
-
-
+def getSubProbSum(prob,s,t):
+    res = 0
+    for i in prob.keys():
+        if i>=s and i<t:
+            res = res + prob[i]
+    return res        
+    
 def optTrim(prob,m):
     graph = createProbGraph(prob)
     source = min(prob.keys())
-    graph = createMPathsGraph(graph, source, m, {})
-    d, p = BellmanFord.bellman_ford(graph, source)
-    print d, p
-    
+    d, p = BellmanFord.bellman_ford(graph, source,m+1)
+    print d
+    print p
+    print createProb(prob,source,p,m)
     
     
     
     
 def test():
-    prob={1:0.3333, 2:0.3333, 3:0.333}
-    print prob
+    prob1={1:0.3333, 2:0.3333, 3:0.333}
+    prob2={1:0.3333, 2:0.4, 3:0.16666, 4:0.1}
+    prob={1:0.3333, 20:0.12, 6:0.16666, 4:0.1, 12:0.08, 100:0.05, 50:0.15}
+    #print prob
     graph = createProbGraph(prob)
-    print graph
-    optTrim(prob,2)
+    #print graph
+    optTrim(prob,3)
     graph2 = {
         'a': {'b': 1, 'c':  4},
         'b': {'c':  3, 'e':  1},
