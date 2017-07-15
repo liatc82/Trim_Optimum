@@ -35,7 +35,6 @@ def createProb(prob,source,p,m):
     while s:
         s = p[i][s]
         aProb[s] = getSubProbSum(prob,s,t)
-        print s, t
         t=s
         i=i-1
         if s==source: break
@@ -52,37 +51,76 @@ def optTrim(prob,m):
     graph = createProbGraph(prob)
     source = min(prob.keys())
     d, p = BellmanFord.bellman_ford(graph, source,m+1)
-    print d
-    print p
-    print createProb(prob,source,p,m)
+    #print d
+    #print p
+    return createProb(prob,source,p,m)
     
-    
-    
-    
-def test():
-    prob1={1:0.3333, 2:0.3333, 3:0.333}
-    prob2={1:0.3333, 2:0.4, 3:0.16666, 4:0.1}
-    prob={1:0.3333, 20:0.12, 6:0.16666, 4:0.1, 12:0.08, 100:0.05, 50:0.15}
-    #print prob
-    graph = createProbGraph(prob)
-    #print graph
-    optTrim(prob,3)
-    graph2 = {
-        'a': {'b': 1, 'c':  4},
-        'b': {'c':  3, 'e':  1},
-        'c': {},
-        'd': {'b':  1},
-        'e': {}
-        }
+def appxProb(prob,m):   
+    vals = prob.keys()
+    vals.sort()
+    n = len(vals)-m
+    minVals = min(vals)
+    vals.remove(minVals)
+    for i in range(n):
+        mini = float('Inf')
+        vals = prob.keys()
+        vals.sort()
+        vals.remove(minVals)
+        for v in vals:
+            if prob[v]<mini:
+                mini = prob[v]
+                vMin = v
+        prv = minVals
+        for v in vals:
+            if v==vMin:
+                prob[prv] = prob[prv]+prob[v]
+                prob.pop(v)
+                break
+            prv = v  
+    return prob           
+
+def sumRandVars(p1,p2):
+    p={}
+    for v1 in p1.keys():
+        for v2 in p2.keys():
+            if not p.has_key(v1+v2):
+                p[v1+v2] = 0
+            p[v1+v2]= p[v1+v2]+ p1[v1]*p2[v2]
+    return p        
         
-    graph1 = {
-    'a': {'b': 1, 'c':  4},
-    'b': {'c':  3, 'd':  2, 'e':  1},
-    'c': {},
-    'd': {'b':  1, 'c':  5},
-    'e': {'d': 1}
-    }
-#    print "g2"
-#    print createMPathsGraph(graph,'a',3,{})    
+def test():
+    prob={1:0.3333, 20:0.12, 6:0.16666, 4:0.1, 12:0.08, 100:0.05, 50:0.15}
+    prob1={1:1.0/3, 2:1.0/3, 3:1.0/3}
+    p= sumRandVars(prob1,prob1)
+    print "p=prob1+prob1:", p
+#    prob2={1:0.3333, 2:0.4, 3:0.16666, 4:0.1}
+#    #print prob
+#    graph = createProbGraph(prob)
+#    #print graph
+    print "optTrim(p,2):",optTrim(p,2)
     
+    p1= optTrim(prob1,2)
+    print "p1:", p1
+    
+    p2 = sumRandVars(p1,p1)
+    print "p2=p1+p1:",p2
+    print "optTrim(p2,2):", optTrim(p2,2)
+    print appxProb(p2,2)
+
+#    graph2 = {
+#        'a': {'b': 1, 'c':  4},
+#        'b': {'c':  3, 'e':  1},
+#        'c': {},
+#        'd': {'b':  1},
+#        'e': {}
+#        }
+#        
+#    graph1 = {
+#    'a': {'b': 1, 'c':  4},
+#    'b': {'c':  3, 'd':  2, 'e':  1},
+#    'c': {},
+#    'd': {'b':  1, 'c':  5},
+#    'e': {'d': 1}
+#    }
+
 if __name__ == '__main__': test()    
