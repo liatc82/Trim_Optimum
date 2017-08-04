@@ -55,7 +55,7 @@ def optTrim(prob,m):
     #print p
     return createProb(prob,source,p,m)
     
-def appxProb(prob,m):   
+def appxProb(prob,m):   #shorter algo?
     vals = prob.keys()
     vals.sort()
     n = len(vals)-m
@@ -105,8 +105,19 @@ def test():
     p2 = sumRandVars(p1,p1)
     print "p2=p1+p1:",p2
     print "optTrim(p2,2):", optTrim(p2,2)
-    print appxProb(p2,2)
-
+    
+    print prob1
+    print "p1:", p1
+    p3 = sumRandVars(p1,prob1)
+    print "p1+prob1=",p3
+    print "optTrim(p3,2):", optTrim(p3,2)
+#    print appxProb(p2,2)
+#    p1 = {1:1.0/4, 4:3.0/4}
+#    p2 = {1:1.0/16, 4:15.0/16}
+#    p= sumRandVars(p1,p2)
+#    p3 = {2:1.0/16, 5:3.0/8, 8:9.0/16}
+#    p= sumRandVars(p,p3)
+#    print p
 #    graph2 = {
 #        'a': {'b': 1, 'c':  4},
 #        'b': {'c':  3, 'e':  1},
