@@ -1,0 +1,14 @@
+<plan>
+    <seq name="mission" >
+	    <tsk name="action 1"/>
+	    <tsk name="action 2"/>
+	    <tsk name="action 3" />
+	    <tsk name="action 4"/>  
+	    <tsk name="action 5"/>
+	    <tsk name="action 6"/>
+	    <tsk name="action 7" />
+	    <tsk name="action 8"/>  
+	    <tsk name="action 9"/>
+	    <tsk name="action 10" />
+    </seq>
+</plan>

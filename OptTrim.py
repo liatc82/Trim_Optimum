@@ -48,6 +48,8 @@ def getSubProbSum(prob,s,t):
     return res        
     
 def optTrim(prob,m):
+    if len(prob.keys())<=m:
+        return prob
     graph = createProbGraph(prob)
     source = min(prob.keys())
     d, p = BellmanFord.bellman_ford(graph, source,m+1)
@@ -86,31 +88,68 @@ def sumRandVars(p1,p2):
             if not p.has_key(v1+v2):
                 p[v1+v2] = 0
             p[v1+v2]= p[v1+v2]+ p1[v1]*p2[v2]
-    return p        
-        
+    return p   
+
+def sumOptTrim(dist,e,n):
+    m=int(1/e)*int(n)
+    p={0:1}
+    for d in dist:
+        p = sumRandVars(p,d)
+        p = optTrim(p,m)
+    return p  
+    
+def sumAccurate(dist):
+    p={0:1}
+    for d in dist:
+        p = sumRandVars(p,d)
+    return p          
+       
+def lessThanT(dist, T):
+    prob = 0
+    for key in dist:
+        if (key<=T):
+            prob = prob + dist[key]
+    return prob
+
+def lessThanAllT(dist, distapx):
+    d={}
+    for key in dist:
+        d[key]=lessThanT(distapx, key)-lessThanT(dist,key)
+    return d
+           
+       
 def test():
-    prob={1:0.3333, 20:0.12, 6:0.16666, 4:0.1, 12:0.08, 100:0.05, 50:0.15}
-    prob1={1:1.0/3, 2:1.0/3, 3:1.0/3}
-    p= sumRandVars(prob1,prob1)
-    print "p=prob1+prob1:", p
-#    prob2={1:0.3333, 2:0.4, 3:0.16666, 4:0.1}
-#    #print prob
-#    graph = createProbGraph(prob)
-#    #print graph
-    print "optTrim(p,2):",optTrim(p,2)
-    
-    p1= optTrim(prob1,2)
-    print "p1:", p1
-    
-    p2 = sumRandVars(p1,p1)
-    print "p2=p1+p1:",p2
-    print "optTrim(p2,2):", optTrim(p2,2)
-    
-    print prob1
-    print "p1:", p1
-    p3 = sumRandVars(p1,prob1)
-    print "p1+prob1=",p3
-    print "optTrim(p3,2):", optTrim(p3,2)
+       
+    dist=[{1:0.5, 10:0.5},{2:0.5, 20:0.5},{3:0.5, 30:0.5},{4:0.5, 40:0.5}]
+    S =sumAccurate(dist)
+    Sapx = sumOptTrim(dist,4,1)
+    print S, Sapx
+    print lessThanAllT(S, Sapx)    
+#    prob={1:0.3333, 20:0.12, 6:0.16666, 4:0.1, 12:0.08, 100:0.05, 50:0.15}
+#    prob1={1:1.0/3, 2:1.0/3, 3:1.0/3}
+#    p= sumRandVars(prob1,prob1)
+#    print "p=prob1+prob1:", p
+##    prob2={1:0.3333, 2:0.4, 3:0.16666, 4:0.1}
+##    #print prob
+##    graph = createProbGraph(prob)
+##    #print graph
+#    print "optTrim(p,2):",optTrim(p,2)
+#    
+#    p1= optTrim(prob1,2)
+#    print "p1:", p1
+#    
+#    p2 = sumRandVars(p1,p1)
+#    print "p2=p1+p1:",p2
+#    print "optTrim(p2,2):", optTrim(p2,2)
+#    
+#    print "sumOptTrim", sumOptTrim([p1,p1],2,0)    
+#    
+#    
+#    print prob1
+#    print "p1:", p1
+#    p3 = sumRandVars(p1,prob1)
+#    print "p1+prob1=",p3
+#    print "optTrim(p3,2):", optTrim(p3,2)
 #    print appxProb(p2,2)
 #    p1 = {1:1.0/4, 4:3.0/4}
 #    p2 = {1:1.0/16, 4:15.0/16}

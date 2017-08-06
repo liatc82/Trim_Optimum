@@ -1,0 +1,186 @@
+tests/event1.xml
+tests/event1_attrib.xml
+samples = 1000
+n=47
+m=10
+e=0.1
+elapsed_time_sampling 0.278792142868
+elapsed_time_gridyGood 1.3824839592
+elapsed_time_gridyBad 0.943809986115
+elapsed_time_gridyBadLowBound 0.93443608284
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=2.0
+e=0.1
+#samples=1000
+elapsed_time_sampling 0.187732934952
+elapsed_time_gridyGood 0.289458990097
+elapsed_time_gridyBadUp 0.139995098114
+elapsed_time_gridyBadDown 0.139265060425
+elapsed_time_accurate 1.49556303024
+Error samplin 0.0334017908992 2611.0
+Error gridyAlgo 0.00326746708015 2194.5
+Error gridyAlgoDowngrade 0.00862613460049 2872.5
+Error gridyAlgoDowngradeLowBound 0.00525108119473 2523.5
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=2.0
+e=0.1
+#samples=1000
+elapsed_time_sampling 0.187621116638
+elapsed_time_gridyGood 0.285058021545
+elapsed_time_gridyBadUp 0.139825105667
+elapsed_time_gridyBadDown 0.139246940613
+elapsed_time_accurate 1.49027109146
+Error samplin 0.0205720006302 2568.5
+Error gridyAlgo 0.00326746708015 2194.5
+Error gridyAlgoDowngrade 0.00862613460049 2872.5
+Error gridyAlgoDowngradeLowBound 0.00525108119473 2523.5
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=2.0
+e=0.1
+#samples=10000
+elapsed_time_sampling 1.92250800133
+elapsed_time_gridyGood 0.287804841995
+elapsed_time_gridyBadUp 0.141331911087
+elapsed_time_gridyBadDown 0.14025592804
+elapsed_time_accurate 1.51206207275
+Error samplin 0.00715169194257 2369.5
+Error gridyAlgo 0.00326746708015 2194.5
+Error gridyAlgoDowngrade 0.00862613460049 2872.5
+Error gridyAlgoDowngradeLowBound 0.00525108119473 2523.5
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=2.0
+e=0.1
+#samples=10000
+elapsed_time_sampling 19.1146399975
+elapsed_time_gridyGood 1.65498900414
+elapsed_time_gridyBad 1.14899110794
+elapsed_time_gridyBadLowBound 1.14803886414
+elapsed_time_accurate 1.49422597885
+samplin 0.0030976140823 2583.5
+gridyAlgo 0.0 3478.5
+gridyAlgoDowngrade 0.00043916516006 2064.0
+gridyAlgoDowngradeLowBound 0.000413415953517 2064.0
+*****************************************************tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=2.0
+e=0.01
+#samples=1000000
+elapsed_time_sampling 190.406630039
+elapsed_time_gridyGood 1.66192698479
+elapsed_time_gridyBadUp 1.14163708687
+elapsed_time_gridyBadDown 1.15442800522
+elapsed_time_accurate 1.51311588287
+Error samplin 0.000924908472148 2745.5
+Error gridyAlgo 0.0 3478.5
+Error gridyAlgoDowngrade 0.00043916516006 2064.0
+Error gridyAlgoDowngradeLowBound 0.000413415953517 3332.0
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=2.0
+e=0.001
+#samples=10000000
+elapsed_time_sampling 1905.07018399
+elapsed_time_gridyGood 1.65821814537
+elapsed_time_gridyBadUp 1.49661922455
+elapsed_time_gridyBadDown 1.50264310837
+elapsed_time_accurate 1.49787902832
+Error samplin 0.000138519381972 2306.0
+Error gridyAlgo 0.0 3478.5
+Error gridyAlgoDowngrade 3.40025289916e-05 3422.5
+Error gridyAlgoDowngradeLowBound 3.16183432005e-05 1973.5
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=4.0
+e=0.1
+#samples=1000
+elapsed_time_sampling 0.209184885025
+elapsed_time_gridyGood 0.712871074677
+elapsed_time_gridyBadUp 0.33634185791
+elapsed_time_gridyBadDown 0.333224058151
+elapsed_time_accurate 18.9091110229
+Error samplin 0.0476372456366 3035.75
+Error gridyAlgo 0.00598432206269 3069.25
+Error gridyAlgoDowngrade 0.0190317857622 3285.0
+Error gridyAlgoDowngradeLowBound 0.00967290701131 4258.75
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=4.0
+e=0.1
+#samples=10000
+elapsed_time_sampling 2.10328602791
+elapsed_time_gridyGood 0.719213008881
+elapsed_time_gridyBadUp 0.336235046387
+elapsed_time_gridyBadDown 0.336603879929
+elapsed_time_accurate 18.9707119465
+Error samplin 0.00754145433347 2819.0
+Error gridyAlgo 0.00598432206269 3069.25
+Error gridyAlgoDowngrade 0.0190317857622 3285.0
+Error gridyAlgoDowngradeLowBound 0.00967290701131 4258.75
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=4.0
+e=0.01
+#samples=100000
+elapsed_time_sampling 20.9487028122
+elapsed_time_gridyGood 13.4477119446
+elapsed_time_gridyBadUp 7.9073278904
+elapsed_time_gridyBadDown 7.9848690033
+elapsed_time_accurate 19.1685020924
+Error samplin 0.00463593311765 3048.5
+Error gridyAlgo 0.000376287773175 2289.75
+Error gridyAlgoDowngrade 0.0013999662013 3745.0
+Error gridyAlgoDowngradeLowBound 0.000902620893548 4258.75
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=4.0
+e=0.01
+#samples=1000000
+elapsed_time_sampling 211.53380394
+elapsed_time_gridyGood 13.5005629063
+elapsed_time_gridyBadUp 7.98481202126
+elapsed_time_gridyBadDown 7.99480986595
+elapsed_time_accurate 19.6994590759
+Error samplin 0.00105424151357 3008.5
+Error gridyAlgo 0.000376287773175 2289.75
+Error gridyAlgoDowngrade 0.0013999662013 3745.0
+Error gridyAlgoDowngradeLowBound 0.000902620893548 4258.75
+*****************************************************
+tests/event1.xml
+tests/event1_attrib.xml
+n=47
+m=4.0
+e=0.001
+#samples=10000000
+elapsed_time_sampling 2113.63463712
+elapsed_time_gridyGood 22.4395740032
+elapsed_time_gridyBadUp 16.1149728298
+elapsed_time_gridyBadDown 16.1154708862
+elapsed_time_accurate 19.581692934
+Error samplin 0.000129286212485 3289.0
+Error gridyAlgo 1.55431223448e-15 3102.0
+Error gridyAlgoDowngrade 0.000133387300845 3962.75
+Error gridyAlgoDowngradeLowBound 9.22088750031e-05 4258.75
+*****************************************************

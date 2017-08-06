@@ -1,0 +1,12 @@
+	<tsk name="action 1" probability="0.9 0.8" Successdistribution="U[1.0,11.0]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" >
+	<tsk name="action 2" probability="0.9 0.8" Successdistribution="U[3.0,13.0]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+	<tsk name="action 3" probability="0.9 0.8" Successdistribution="U[7.0,17.0]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+	<tsk name="action 4" probability="0.9 0.8" Successdistribution="U[13.0,23.0]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+	<tsk name="action 5" probability="0.9 0.8" Successdistribution="U[21.0,31.0]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+	<tsk name="action 6" probability="0.9 0.8" Successdistribution="U[24.0,34.00]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+	<tsk name="action 7" probability="0.9 0.8" Successdistribution="U[36.0,46.00]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+	<tsk name="action 8" probability="0.9 0.8" Successdistribution="U[50.0,60.00]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+	<tsk name="action 9" probability="0.9 0.8" Successdistribution="U[68.0,78.000]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+	<tsk name="action 10" probability="0.9 0.8" Successdistribution="U[92.0,102.000]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+	<tsk name="action 11" probability="0.9 0.8" Successdistribution="U[124.0,134.000]" Failuredistribution="C[[1.0,0.5][2.0,0.5]] U[1.0,2.0]" />
+</tsk>
