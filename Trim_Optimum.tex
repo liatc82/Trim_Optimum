@@ -40,6 +40,15 @@
 	
 \section{Introduction}
 
+The need for approximating probability distributions by distributions that can be represented  more compactly is mentioned in the literature in various contests. Typically, a continuous distribution is approximated by a discrete one that has a small support. See, for example the work of Keefer and Bodily~\cite{Keefer1983, Keefer1994} on three point approximations. This, in a sense, is similar to truncating digits to obtain a fixed point representation of an irrational number. Other approximation approaches proposed in the literature include the bracket approach, discussed, e.g., in~\cite{III1983} and in~\cite{Hammond2013}, the support of the distribution is divided into several brackets (not necessary equal in probability) and the mean or the median of every bucket is chosen to be a discrete representation of that part of the target distribution in the approximation. Another approach is based on the idea that the approximation should match the moments of the original distribution. Matching the moments has been recognized to be especially important in computing value lotteries and their certain equivalents~\cite{Smith1993}. The idea is as follows: the value function frequently can be well approximated by a polynomial (with degree $m$) of a random variable. Thus, if that random variable is approximated by a simpler discrete variable having the same $m$ first moments, the expected value function based on the approximation is no different
+from that one based on the original random variable. The key result here states that it
+is possible to match the first $2m - 1$ moments of the target distribution by a discrete one
+with a support of size $m$, see~\cite{III1983} and~\cite{Smith1993}. When the original distribution is not specified completely so fewer than $2m - 1$ moments of the original distribution are known, the resulting ambiguity of defining the approximation of size $m$ was suggested to be resolved using the entropy maximization~\cite{Rosenblueth1987}.
+
+
+
+
+
 \section{One sided Kolmogorov distance}	
 
 \begin{definition}\label{consecutive} For a set $S \subseteq \mathbb{R}$ we say that
@@ -304,6 +313,7 @@ $.
 1) Why is the first value gives us the minimal partition?}
 
 
-
+\bibliography{library,Trim_Optimum}{}
+\bibliographystyle{plain}
 \end{document}
 
