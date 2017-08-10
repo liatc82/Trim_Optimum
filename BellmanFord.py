@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import pdb
+from toposort import toposort, toposort_flatten
 import TopoSort
+
 
 """
 The Bellman-Ford algorithm
@@ -39,14 +41,22 @@ def relax(node, graph, d, p, k):
 
 def bellman_ford(graph, source, m):
     d, p = initialize(graph, source,m)
-    g = TopoSort.creatGraph(graph)    
-    g = TopoSort.topological(g)
+    g = creatGraph(graph)    
+    #g = TopoSort.topological(g)
+    g = toposort_flatten(g)
     for i in range(m):
         if i==0: continue
         for u in g:
             relax(u, graph, d, p, i) #Lets relax it
     return d, p
 
+def creatGraph(wGraph):
+    g={}
+    for u in wGraph:
+        g[u]=set()
+        for v in wGraph[u]:
+            g[u].add(v)
+    return g   
 
 def test():
     graph = {
