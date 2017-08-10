@@ -37,8 +37,25 @@
 \DeclareMathOperator{\LTrim}{LTrim}
 
 \begin{document}
-	
+
 \section{Introduction}
+ \begin{itemize}
+ 	\item Algorithms in AI and in the decision making literature often apply operations over random variables such as addition, multiplication, maximum, etc.
+ 	\item In many cases the analysis of the complexity of these algorithms considers these operations as atomic, i.e., requiring $o(1)$ time and memory.
+ 	\item When we look closer, we see that this is not always the case: The table that represents these variables (their support) may grow exponentially with convolution. This affects both memory and time.
+ 	\item We, therefore, need methods for approximating random variables with large support: Given a variable $X$ we need a way  to compute a variable $X'$ with $suppor(X') < suppor(X)$ such that if we replace $X$ with $X'$ in the remainder of the computation, we get a result that is close to the result that we would have gotten if we could use $X$.
+ 	\item Another related issue is with handling continuous distributions: If we want to use them in computations, we need to convert them to a table and this requires an approximation.
+ 	\item The above two points are parallel (in reverse order) to the common practice of approximating rational number with fixed point numbers (e.g., $\pi \approx 3.14$), and of truncating digits (e.g., $\$24.456 \approx \$24.46$) in order to save space and computations.
+ 	\item While in the context of real numbers the notion of approximation, i.e., the distance between two numbers, is clear, it is not so when dealing with random variables. There are various different distances known in the literature such as the Kolmogorov distance, the Waserstein distance, the Kanterovitch distance, etc. The choice of a specific metric to use depends on the application at hand.
+ 	\item In this work we focus on the Kolmogorov distance, motivated by the problem of estimating the probability of missing a deadline in a task tree.
+ 	\item More specifically, we say that $X'$ is an $\varepsilon$-approximation of $X$ if $|X-X'|_{K} \leq \varepsilon$ and $F_X < F_{X'}$. The second part is because we want a safe estimation of the probability of missing a deadline, i.e., we only allow ``false positive'' errors where our estimation is above the real value, not below it.
+ 	\item The main contribution of this work is an algorithm that, given a random variable $X$ and an integer $m$, finds a random variable $X'$ such that $\support(X')=m$ and there is no other variable with support of size $m$ that approximates $X$ better than $X'$.
+ \end{itemize}
+
+	
+\section{Related Work}
+
+% Gera: The following paragraph is taken from the CvAR report almost word by word. Needs to be reprased haevily...
 
 The need for approximating probability distributions by distributions that can be represented  more compactly is mentioned in the literature in various contests. Typically, a continuous distribution is approximated by a discrete one that has a small support. See, for example the work of Keefer and Bodily~\cite{Keefer1983, Keefer1994} on three point approximations. This, in a sense, is similar to truncating digits to obtain a fixed point representation of an irrational number. Other approximation approaches proposed in the literature include the bracket approach, discussed, e.g., in~\cite{III1983} and in~\cite{Hammond2013}, the support of the distribution is divided into several brackets (not necessary equal in probability) and the mean or the median of every bucket is chosen to be a discrete representation of that part of the target distribution in the approximation. Another approach is based on the idea that the approximation should match the moments of the original distribution. Matching the moments has been recognized to be especially important in computing value lotteries and their certain equivalents~\cite{Smith1993}. The idea is as follows: the value function frequently can be well approximated by a polynomial (with degree $m$) of a random variable. Thus, if that random variable is approximated by a simpler discrete variable having the same $m$ first moments, the expected value function based on the approximation is no different
 from that one based on the original random variable. The key result here states that it
